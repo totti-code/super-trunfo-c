@@ -2,8 +2,7 @@
 #include <string.h>
 #include <stdlib.h>
 
-// Lê um número decimal que pode vir com vírgula ou ponto.
-// Ex: 314,93 ou 314.93
+// Lê um número decimal que pode vir com vírgula ou ponto (ex: 314,93 ou 314.93)
 float lerFloatSeguro() {
     char entrada[50];
     scanf("%49s", entrada);
@@ -24,12 +23,16 @@ int main() {
     // Variáveis da Carta 1
     // =========================
     char estado1;
-    char codigo1[4];        // ex: A01 + '\0'
+    char codigo1[4];          // "A01" + '\0'
     char nomeCidade1[50];
     int populacao1;
     float area1;
-    float pib1;
+    float pib1;               // em bilhões de reais (entrada)
     int pontosTuristicos1;
+
+    // Novas propriedades (calculadas)
+    float densidade1;
+    float pibPerCapita1;
 
     // =========================
     // Variáveis da Carta 2
@@ -39,8 +42,12 @@ int main() {
     char nomeCidade2[50];
     int populacao2;
     float area2;
-    float pib2;
+    float pib2;               // em bilhões de reais (entrada)
     int pontosTuristicos2;
+
+    // Novas propriedades (calculadas)
+    float densidade2;
+    float pibPerCapita2;
 
     // =========================
     // Entrada de dados - Carta 1
@@ -69,6 +76,12 @@ int main() {
     scanf("%d", &pontosTuristicos1);
 
     // =========================
+    // Cálculos - Carta 1
+    // =========================
+    densidade1 = (float)populacao1 / area1;
+    pibPerCapita1 = (pib1 * 1000000000.0f) / (float)populacao1;
+
+    // =========================
     // Entrada de dados - Carta 2
     // =========================
     printf("\n=== Cadastro da Carta 2 ===\n");
@@ -95,6 +108,12 @@ int main() {
     scanf("%d", &pontosTuristicos2);
 
     // =========================
+    // Cálculos - Carta 2
+    // =========================
+    densidade2 = (float)populacao2 / area2;
+    pibPerCapita2 = (pib2 * 1000000000.0f) / (float)populacao2;
+
+    // =========================
     // Exibição dos dados
     // =========================
     printf("\n\n===== CARTAS CADASTRADAS =====\n");
@@ -107,6 +126,8 @@ int main() {
     printf("Area: %.2f km2\n", area1);
     printf("PIB: %.2f bilhoes de reais\n", pib1);
     printf("Numero de Pontos Turisticos: %d\n", pontosTuristicos1);
+    printf("Densidade Populacional: %.2f hab/km2\n", densidade1);
+    printf("PIB per Capita: %.2f reais\n", pibPerCapita1);
 
     printf("\nCarta 2:\n");
     printf("Estado: %c\n", estado2);
@@ -116,6 +137,8 @@ int main() {
     printf("Area: %.2f km2\n", area2);
     printf("PIB: %.2f bilhoes de reais\n", pib2);
     printf("Numero de Pontos Turisticos: %d\n", pontosTuristicos2);
+    printf("Densidade Populacional: %.2f hab/km2\n", densidade2);
+    printf("PIB per Capita: %.2f reais\n", pibPerCapita2);
 
     return 0;
 }
